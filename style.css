@@ -1,0 +1,198 @@
+h1 {
+  font-size: 80px;
+  font-family: "Helvetica neue", Helvetica, "Lucida Grande", sans-serif;
+  text-align: center;
+}
+
+#items {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input {
+  padding: 10px 30px;
+  width: auto;  
+  font-size: 40px;
+  font-family: "Helvetica", Helvetica, "Lucida Grande", sans-serif; 
+  height: auto;
+  font-weight: bolder;
+  min-height: 65px;
+  margin: 20px;
+  line-height: 65px;
+}
+
+.input:hover {
+  cursor: pointer;
+}
+
+.input:focus {
+  cursor: auto;
+}
+
+
+/* red id */
+.inputRed {
+  background-color: #ff6161;
+  outline: 5px solid #ff6161;
+  border: 2px solid #ff6161;
+  text-shadow: 2px 2px 0px #ff7070;
+}
+
+#red:hover {
+  background-color: #ff6161aa;
+  border-color: #ff616166;
+}
+
+#red:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* orange id */
+.inputOrange {
+  background-color: #ffbe68;
+  outline: 5px solid #ffbe68;
+  border: 2px solid #ffbe68;  
+  text-shadow: 2px 2px 0px #f6b55f;
+}
+
+#orange:hover {
+  background-color: #ffbe68aa;
+  border-color: #ffbe68;66 
+}
+
+#orange:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* yellow id */
+.inputYellow {
+  background-color: #fffb89;
+  outline: 5px solid #fffb89;
+  border: 2px solid #fffb89;  
+  text-shadow: 2px 2px 0px #e7e371;
+}
+
+#yellow:hover {
+  background-color: #fffb89aa;
+  border-color: #fffb89;66 
+}
+
+#yellow:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* limegreen id */
+.inputLimegreen {
+  background-color: #ddff89;
+  outline: 5px solid #ddff89;
+  border: 2px solid #ddff89;
+  text-shadow: 2px 2px 0px #c8ea74;
+}
+
+#limegreen:hover {
+  background-color: #ddff89aa;
+  border-color: #ddff8966;
+}
+
+#limegreen:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* green id */
+.inputGreen {
+  background-color: #89ff9a;
+  outline: 5px solid #89ff9a;
+  border: 2px solid #89ff9a;
+  text-shadow: 2px 2px 0px #7df38e;
+}
+
+#green:hover {
+  background-color: #89ff9aaa;
+  border-color: #89ff9a66;
+}
+
+#green:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* aqua id */
+.inputAqua {
+  background-color: #89ffe8;
+  outline: 5px solid #89ffe8;
+  border: 2px solid #89ffe8;
+  text-shadow: 2px 2px 0px #79efd8;
+}
+
+#aqua:hover {
+  background-color: #89ffe8aa;
+  border-color: #89ffe866;
+}
+
+#aqua:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* blue id */
+.inputBlue {
+  background-color: #89e2ff;
+  outline: 5px solid #89e2ff;
+  border: 2px solid #89e2ff;
+  text-shadow: 2px 2px 0px #7fd8f5;
+}
+
+#blue:hover {
+  background-color: #89e2ffaa;
+  border-color: #89e2ff66;
+}
+
+#blue:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+/* purple id */
+.inputPurple {
+  background-color: #8997ff;
+  outline: 5px solid #8997ff;
+  border: 2px solid #8997ff;
+  text-shadow: 2px 2px 0px #909dff;
+}
+
+#purple:hover {
+  background-color: #8997ffaa;
+  border-color: #8997ff66;
+}
+
+#purple:focus {
+  background-color: #ffffff; 
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
+@media only screen and (max-width: 500px) {
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .input {
+    padding: 10px 20px;
+    font-size: 28px;
+    min-height: 33px;
+    line-height: 33px;
+  }
+
+}
