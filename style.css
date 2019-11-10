@@ -29,9 +29,8 @@ h1 {
   cursor: auto;
 }
 
-
 /* red id */
-.inputRed {
+.inputRed, #red.input.dragging {
   background-color: #ff6161;
   outline: 5px solid #ff6161;
   border: 2px solid #ff6161;
@@ -50,7 +49,7 @@ h1 {
 }
 
 /* orange id */
-.inputOrange {
+.inputOrange, #orange.input.dragging {
   background-color: #ffbe68;
   outline: 5px solid #ffbe68;
   border: 2px solid #ffbe68;  
@@ -59,7 +58,7 @@ h1 {
 
 #orange:hover {
   background-color: #ffbe68aa;
-  border-color: #ffbe68;66 
+  border-color: #ffbe6866;
 }
 
 #orange:focus {
@@ -69,7 +68,7 @@ h1 {
 }
 
 /* yellow id */
-.inputYellow {
+.inputYellow, #yellow.input.dragging {
   background-color: #fffb89;
   outline: 5px solid #fffb89;
   border: 2px solid #fffb89;  
@@ -78,7 +77,7 @@ h1 {
 
 #yellow:hover {
   background-color: #fffb89aa;
-  border-color: #fffb89;66 
+  border-color: #fffb8966;
 }
 
 #yellow:focus {
@@ -88,7 +87,7 @@ h1 {
 }
 
 /* limegreen id */
-.inputLimegreen {
+.inputLimegreen, #limegreen.input.dragging {
   background-color: #ddff89;
   outline: 5px solid #ddff89;
   border: 2px solid #ddff89;
@@ -107,7 +106,7 @@ h1 {
 }
 
 /* green id */
-.inputGreen {
+.inputGreen, #green.input.dragging {
   background-color: #89ff9a;
   outline: 5px solid #89ff9a;
   border: 2px solid #89ff9a;
@@ -126,7 +125,7 @@ h1 {
 }
 
 /* aqua id */
-.inputAqua {
+.inputAqua, #aqua.input.dragging {
   background-color: #89ffe8;
   outline: 5px solid #89ffe8;
   border: 2px solid #89ffe8;
@@ -145,7 +144,7 @@ h1 {
 }
 
 /* blue id */
-.inputBlue {
+.inputBlue, #blue.input.dragging {
   background-color: #89e2ff;
   outline: 5px solid #89e2ff;
   border: 2px solid #89e2ff;
@@ -164,7 +163,7 @@ h1 {
 }
 
 /* purple id */
-.inputPurple {
+.inputPurple, #purple.input.dragging {
   background-color: #8997ff;
   outline: 5px solid #8997ff;
   border: 2px solid #8997ff;
@@ -180,6 +179,13 @@ h1 {
   background-color: #ffffff; 
   border: 2px solid #ccc;
   text-shadow: 0px 0px 0px;
+}
+
+.ghost {
+  opacity: 0.4;
+  outline-color: #000;
+  outline-style: dashed;
+  transition: opacity 2s;
 }
 
 @media only screen and (max-width: 500px) {
