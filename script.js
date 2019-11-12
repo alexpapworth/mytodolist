@@ -65,17 +65,23 @@ function addContentListener() {
 var ready;
 
 ready = function() {
-  container = document.querySelector('#items');
+  if (window.navigator.platform == "iPhone") {
+    for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
+      document.querySelectorAll('.input')[i].draggable = false;
+    }
+  }
+  else {
+    container = document.querySelector('#items');
 
+    for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
+      document.querySelectorAll('.input')[i].addEventListener("dragstart", dragstart);
+      document.querySelectorAll('.input')[i].addEventListener("dragend", dragend);
+      document.querySelectorAll('.input')[i].addEventListener("dragover", dragover);
+      document.querySelectorAll('.input')[i].addEventListener("dragenter", dragenter);
+      document.querySelectorAll('.input')[i].addEventListener("dragleave", dragleave);
 
-  for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
-    document.querySelectorAll('.input')[i].addEventListener("dragstart", dragstart);
-    document.querySelectorAll('.input')[i].addEventListener("dragend", dragend);
-    document.querySelectorAll('.input')[i].addEventListener("dragover", dragover);
-    document.querySelectorAll('.input')[i].addEventListener("dragenter", dragenter);
-    document.querySelectorAll('.input')[i].addEventListener("dragleave", dragleave);
-
-    document.querySelectorAll('.input')[i].addEventListener("input", addContentListener);
+      document.querySelectorAll('.input')[i].addEventListener("input", addContentListener);
+    }
   }
 }
 
