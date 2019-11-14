@@ -62,9 +62,26 @@ function addContentListener() {
   }
 }
 
+function saveContent() {
+  let name = this.dataset.name;
+  let value = JSON.stringify(this.innerHTML);
+  localStorage.setItem(name, value);
+}
+
+function loadContent() {
+  for (var index = 0; index < localStorage.length; index++) {
+    let key = localStorage.key(index);
+    if (document.querySelector(`.input[data-name="${key}"]`)) {
+      document.querySelector(`.input[data-name="${key}"]`).innerHTML = JSON.parse(localStorage.getItem(key));
+    }
+  }
+}
+
 var ready;
 
 ready = function() {
+  loadContent();
+
   if (window.navigator.platform == "iPhone") {
     for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
       document.querySelectorAll('.input')[i].draggable = false;
@@ -81,6 +98,7 @@ ready = function() {
       document.querySelectorAll('.input')[i].addEventListener("dragleave", dragleave);
 
       document.querySelectorAll('.input')[i].addEventListener("input", addContentListener);
+      document.querySelectorAll('.input')[i].addEventListener("input", saveContent);
     }
   }
 }
