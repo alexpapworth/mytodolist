@@ -4,9 +4,27 @@ h1 {
   text-align: center;
 }
 
+.new-todo {
+  position: fixed;
+  right: 14px;
+  bottom: 0;
+  cursor: pointer;
+  font-size: 70px;
+  font-weight: 600;
+}
+
+.new-todo:hover {
+  color: #ff6161;
+}
+
+.new-todo::selection {
+  background: transparent;
+}
+
 #items {
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 .input {
@@ -30,7 +48,7 @@ h1 {
 }
 
 /* red id */
-.inputRed, #red.input.dragging {
+.red, #red.input.dragging {
   background-color: #ff6161;
   outline: 5px solid #ff6161;
   border: 2px solid #ff6161;
@@ -49,7 +67,7 @@ h1 {
 }
 
 /* orange id */
-.inputOrange, #orange.input.dragging {
+.orange, #orange.input.dragging {
   background-color: #ffbe68;
   outline: 5px solid #ffbe68;
   border: 2px solid #ffbe68;  
@@ -68,7 +86,7 @@ h1 {
 }
 
 /* yellow id */
-.inputYellow, #yellow.input.dragging {
+.yellow, #yellow.input.dragging {
   background-color: #fffb89;
   outline: 5px solid #fffb89;
   border: 2px solid #fffb89;  
@@ -87,7 +105,7 @@ h1 {
 }
 
 /* limegreen id */
-.inputLimegreen, #limegreen.input.dragging {
+.limegreen, #limegreen.input.dragging {
   background-color: #ddff89;
   outline: 5px solid #ddff89;
   border: 2px solid #ddff89;
@@ -106,7 +124,7 @@ h1 {
 }
 
 /* green id */
-.inputGreen, #green.input.dragging {
+.green, #green.input.dragging {
   background-color: #89ff9a;
   outline: 5px solid #89ff9a;
   border: 2px solid #89ff9a;
@@ -125,7 +143,7 @@ h1 {
 }
 
 /* aqua id */
-.inputAqua, #aqua.input.dragging {
+.aqua, #aqua.input.dragging {
   background-color: #89ffe8;
   outline: 5px solid #89ffe8;
   border: 2px solid #89ffe8;
@@ -144,7 +162,7 @@ h1 {
 }
 
 /* blue id */
-.inputBlue, #blue.input.dragging {
+.blue, #blue.input.dragging {
   background-color: #89e2ff;
   outline: 5px solid #89e2ff;
   border: 2px solid #89e2ff;
@@ -163,7 +181,7 @@ h1 {
 }
 
 /* purple id */
-.inputPurple, #purple.input.dragging {
+.purple, #purple.input.dragging {
   background-color: #8997ff;
   outline: 5px solid #8997ff;
   border: 2px solid #8997ff;
