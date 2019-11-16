@@ -82,15 +82,16 @@ var ready;
 ready = function() {
   loadContent();
 
-  if (window.navigator.platform == "iPhone") {
-    for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
-      document.querySelectorAll('.input')[i].draggable = false;
-    }
-  }
-  else {
-    container = document.querySelector('#items');
+  container = document.querySelector('#items');
 
-    for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
+  for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
+
+    document.querySelectorAll('.input')[i].addEventListener("input", saveContent);
+
+    if (window.navigator.platform == "iPhone") {
+        document.querySelectorAll('.input')[i].draggable = false;
+    }
+    else {
       document.querySelectorAll('.input')[i].addEventListener("dragstart", dragstart);
       document.querySelectorAll('.input')[i].addEventListener("dragend", dragend);
       document.querySelectorAll('.input')[i].addEventListener("dragover", dragover);
@@ -98,7 +99,6 @@ ready = function() {
       document.querySelectorAll('.input')[i].addEventListener("dragleave", dragleave);
 
       document.querySelectorAll('.input')[i].addEventListener("input", addContentListener);
-      document.querySelectorAll('.input')[i].addEventListener("input", saveContent);
     }
   }
 }
