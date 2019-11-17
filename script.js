@@ -2,8 +2,8 @@ var container;
 var dragging;
 var dropping;
 
-var colors = ["red", "orange", "yellow", "limegreen", "green", "aqua", "blue", "purple"]
-var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+let colors = ["red", "orange", "yellow", "limegreen", "green", "aqua", "blue", "purple"]
+let letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 function dragstart(e) {
   dragging = this;
@@ -44,6 +44,8 @@ function dragend() {
   else {
     container.insertBefore(dragging, dropping.nextSibling);
   }
+
+  updateOrder();
 }
 
 function dragEnterContent(e) {
@@ -65,83 +67,148 @@ function addContentListener() {
   }
 }
 
+function saveNewContent() {
+  updateOrder();
+  for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
+    name = document.querySelectorAll('.input')[i].dataset.name;
+
+    if (localStorage.getItem(name) == null) {
+      saveContent.call(document.querySelectorAll('.input')[i]);
+    }
+  }
+}
+
 function saveContent() {
   let name = this.dataset.name;
-  let value = JSON.stringify(this.innerHTML);
+  let color = this.id;
+  let content = this.innerHTML;
+
+  let value = JSON.stringify({"color": color, "content": content});
   localStorage.setItem(name, value);
 }
 
 function loadContent() {
   for (var index = 0; index < localStorage.length; index++) {
-    let key = localStorage.key(index);
-    if (document.querySelector(`.input[data-name="${key}"]`)) {
-      document.querySelector(`.input[data-name="${key}"]`).innerHTML = JSON.parse(localStorage.getItem(key));
+
+    let name = localStorage.key(index);
+
+    if (name != "order") {
+      if (document.querySelector(`.input[data-name="${name}"]`)) {
+        let value = JSON.parse(localStorage.getItem(name));
+        document.querySelector(`.input[data-name="${name}"]`).innerHTML = value.content;
+      }
     }
   }
 }
 
-function createTodo() {
+function updateOrder() {
+  var order = [];
+
+  for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
+    let name = document.querySelectorAll('.input')[i].dataset.name;
+    order.push(name);
+  }
+
+  let value = JSON.stringify(order);
+  localStorage.setItem("order", value);
+}
+
+function createTodo(color, letter, content = "") {
+  let todo = document.createElement('div');
+
+  todo.classList.add("input", color);
+  todo.id = color;
+  todo.dataset.name = letter;
+  todo.contentEditable = true;
+  todo.draggable = true;
+  todo.innerHTML = content;
+
+  container.appendChild(todo);
+  addEventListeners();
+}
+
+function createNewTodo() {
   if (document.querySelectorAll('.input').length == 0) {
-    var countOfTodos = 0;
+    let colorIndex = 0;
     var chosenLetter = "a";
   }
   else {
-    var countOfTodos = document.querySelectorAll('.input').length;
-    var findExistingLetter = ""
-    var chosenLetter = ""
-    var numberOfCharacters = (Math.floor(countOfTodos / 26) +1)
+    let countOfTodos = document.querySelectorAll('.input').length;
+    let numberOfCharacters = (Math.floor(countOfTodos / 26) +1);
+
+    var testExistingLetter = "";
+    var chosenLetter = "";
 
     for (var i = 0; i <= countOfTodos; i++) {
 
-      findExistingLetter = ""
+      testExistingLetter = "";
 
       for (var j = 0; j < numberOfCharacters; j++) {
-        findExistingLetter += letters[i]
+        testExistingLetter += letters[i];
       }
 
-      if (!document.querySelector(`.input[data-name="${findExistingLetter}"`)) {
-        chosenLetter = findExistingLetter;
+      if (!document.querySelector(`.input[data-name="${testExistingLetter}"`)) {
+        chosenLetter = testExistingLetter;
         i = countOfTodos;
       }
     }
 
-    var lastColor = document.querySelectorAll('.input')[countOfTodos-1].id;
-
-    if (!lastColor) {
-      lastColor = "red";
-    }
-
-    var colorIndex = colors.indexOf(lastColor)+1
+    var colorIndex = countOfTodos%7
 
     if (colorIndex > 7) {
       colorIndex = 0;
     }
   }
 
-  var todo = document.createElement('div');
-
-  todo.classList.add("input", colors[colorIndex]);
-  todo.id = colors[colorIndex];
-  todo.dataset.name = chosenLetter;
-  todo.contentEditable = true;
-  todo.draggable = true;
-
-  container.appendChild(todo);
-  ready();
+  createTodo(colors[colorIndex], chosenLetter);
+  saveNewContent();
 
   window.scrollTo(0,document.body.scrollHeight);
 }
 
-var ready;
+function createExistingTodos() {
+  let order = JSON.parse(localStorage.getItem("order"));
+
+  for (var index = 0; index < order.length; index++) {
+
+    let name = order[index];
+
+    if (name != "order") {
+      let storage = JSON.parse(localStorage.getItem(name));
+
+      createTodo(storage.color, name, storage.content);
+    }
+  }
+}
+
+function loadTodos() {
+  if (localStorage.length == 0) {
+    createNewTodo();
+    createNewTodo();
+    createNewTodo();
+    saveNewContent();
+  }
+  else {
+    createExistingTodos();
+    saveNewContent();
+  }
+}
+
+let ready;
+let addEventListeners;
 
 ready = function() {
-  loadContent();
-
   container = document.querySelector('#items');
-  document.querySelector('.new-todo').addEventListener("click", createTodo);
 
+  loadTodos();
+
+  document.querySelector('.new-todo').addEventListener("click", createNewTodo);
+
+  addEventListeners();
+}
+
+addEventListeners = function() {
   for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
-
     document.querySelectorAll('.input')[i].addEventListener("input", saveContent);
 
     if (window.navigator.platform == "iPhone") {
