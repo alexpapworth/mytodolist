@@ -27,7 +27,12 @@ h1 {
   padding-bottom: 50px;
 }
 
+.input-container {
+  position: relative;
+}
+
 .input {
+  position: relative;
   padding: 10px 30px;
   width: auto;  
   font-size: 40px;
@@ -45,6 +50,10 @@ h1 {
 
 .input:focus {
   cursor: auto;
+}
+
+.input-container:hover .controls {
+  display: block;
 }
 
 /* red id */
@@ -204,6 +213,228 @@ h1 {
   outline-color: #000;
   outline-style: dashed;
   transition: opacity 2s;
+}
+
+.controls {
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 16.5px;
+  width: 53px;
+}
+
+.change-color {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+  border: 3px solid #000000;
+  margin-right: 0px;
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.7;
+}
+
+.change-color .inner {
+  width: 10px;
+  height: 10px;
+  background: #000;
+  margin: 2px auto;
+}
+
+.change-color:hover {
+  border-color: #ffffff;
+  box-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  opacity: 1;
+}
+
+.change-color:hover .inner {
+  background: #ffffff;
+  box-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  outline: 2px solid #000;
+}
+
+.change-color:hover .color-options {
+  display: block;
+}
+
+.color-options {
+  display: none;
+  position: absolute;
+  width: 60px;
+  height: 56px;
+  border: 2px solid #000;
+  background: #fff;
+  text-align: center;
+  top: 19px;
+  left: -24.5px;
+  padding-top: 6px;
+  margin-bottom: -9px;
+  border-radius: 10px;
+}
+
+.triangle {
+  width: 15px;
+  height: 15px;
+  background-color: #ffffff;
+  background: linear-gradient(to bottom right, #ffffff 50%, transparent 50%);
+  position: absolute;
+  right: 22px;
+  top: -10px;
+  transform: rotate(45deg);
+  border: 2px solid #000;
+  border-bottom: 0px;
+  border-right: 0px;
+  z-index: 1;
+}
+
+.color-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #000;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.color-box:hover {
+  background: #000;
+}
+
+.red-box {
+  background: #ff6161;
+  box-shadow: 1px 1px #ff7070;
+}
+
+.red-box:hover {
+  border-color: #ff7070;
+}
+
+.orange-box {
+  background: #ffbe68;
+  box-shadow: 1px 1px #f6b55f;
+}
+
+.orange-box:hover {
+  border-color: #f6b55f;
+}
+
+.yellow-box {
+  background: #fffb89;
+  box-shadow: 1px 1px #e7e371;
+}
+
+.yellow-box:hover {
+  border-color: #e7e371;
+}
+
+.limegreen-box {
+  background: #ddff89;
+  box-shadow: 1px 1px #c8ea74;
+}
+
+.limegreen-box:hover {
+  border-color: #c8ea74;
+}
+
+.green-box {
+  background: #89ff9a;
+  box-shadow: 1px 1px #7df38e;
+}
+
+.green-box:hover {
+  border-color: #7df38e;
+}
+
+.aqua-box {
+  background: #89ffe8;
+  box-shadow: 1px 1px #79efd8;
+}
+
+.aqua-box:hover {
+  border-color: #79efd8;
+}
+
+.blue-box {
+  background: #89e2ff;
+  box-shadow: 1px 1px #7fd8f5;
+}
+
+.blue-box:hover {
+  border-color: #7fd8f5;
+}
+
+.purple-box {
+  background: #8997ff;
+  box-shadow: 1px 1px #909dff;
+}
+
+.purple-box:hover {
+  border-color: #909dff;
+}
+
+.black-box {
+  background: #777;
+  box-shadow: 1px 1px #222;
+}
+
+.black-box:hover {
+  background: #fff;
+  border-color: #222;
+}
+
+
+.delete-todo {
+  width: 25px;
+  height: 25px;
+  text-shadow: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  opacity: 0.7;
+}
+
+.delete-todo:hover {
+  color: #ffffff;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  opacity: 1;
+}
+
+.delete-todo div:before {
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  margin-left: -2px;
+}
+
+.delete-todo div:after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  margin-top: -2px;
+}
+
+.delete-todo div:before, .delete-todo div:after {
+  content: "";
+  position: absolute;
+  background-color: #000;
+  transform: rotateZ(45deg);
+}
+
+.delete-todo:hover div:before, .delete-todo:hover div:after {
+  background-color: #fff;
+  box-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+
+.hide-controls {
+  display: none !important;
 }
 
 @media only screen and (max-width: 500px) {

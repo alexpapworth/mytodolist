@@ -39,10 +39,10 @@ function dragend() {
   }
 
   if (dragIndex > dropIndex) {
-    container.insertBefore(dragging, dropping);
+    container.insertBefore(dragging.parentElement, dropping.parentElement);
   }
   else {
-    container.insertBefore(dragging, dropping.nextSibling);
+    container.insertBefore(dragging.parentElement, dropping.parentElement.nextSibling);
   }
 
   updateOrder();
@@ -55,6 +55,19 @@ function dragEnterContent(e) {
 
 function dragLeaveContent(e) {
   e.preventDefault();
+}
+
+function showControls() {
+  let controls = document.querySelector('.controls');
+  controls.classList.remove("hide-controls");
+  todoContainer = this.parentElement;
+
+  todoContainer.appendChild(controls);
+}
+
+function hideControls() {
+  let controls = document.querySelector('.controls');
+  controls.classList.add("hide-controls");
 }
 
 
@@ -114,6 +127,9 @@ function updateOrder() {
 }
 
 function createTodo(color, letter, content = "") {
+  let todoContainer = document.createElement('div');
+  todoContainer.classList.add('input-container');
+
   let todo = document.createElement('div');
 
   todo.classList.add("input", color);
@@ -123,13 +139,14 @@ function createTodo(color, letter, content = "") {
   todo.draggable = true;
   todo.innerHTML = content;
 
-  container.appendChild(todo);
+  todoContainer.appendChild(todo);
+  container.appendChild(todoContainer);
   addEventListeners();
 }
 
 function createNewTodo() {
   if (document.querySelectorAll('.input').length == 0) {
-    let colorIndex = 0;
+    var colorIndex = 0;
     var chosenLetter = "a";
   }
   else {
@@ -222,6 +239,9 @@ addEventListeners = function() {
       document.querySelectorAll('.input')[i].addEventListener("dragleave", dragleave);
 
       document.querySelectorAll('.input')[i].addEventListener("input", addContentListener);
+
+      document.querySelectorAll('.input')[i].addEventListener("mouseenter", showControls);
+      document.querySelectorAll('.input')[i].addEventListener("mousedown", hideControls);
     }
   }
 }
