@@ -208,6 +208,25 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+/* pink id */
+.pink, #pink.input.dragging {
+  background-color: #ff89db;
+  outline: 5px solid #ff89db;
+  border: 2px solid #ff89db;
+  text-shadow: 2px 2px 0px #d070b2;
+}
+
+#pink:hover {
+  background-color: #ff89dbaa;
+  border-color: #ff89db66;
+}
+
+#pink:focus {
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
 .ghost {
   opacity: 0.4;
   outline-color: #000;
@@ -303,86 +322,85 @@ h1 {
   background: #000;
 }
 
-.red-box {
+[data-color="red"] {
   background: #ff6161;
   box-shadow: 1px 1px #ff7070;
 }
 
-.red-box:hover {
+[data-color="red"]:hover {
   border-color: #ff7070;
 }
 
-.orange-box {
+[data-color="orange"] {
   background: #ffbe68;
   box-shadow: 1px 1px #f6b55f;
 }
 
-.orange-box:hover {
+[data-color="orange"]:hover {
   border-color: #f6b55f;
 }
 
-.yellow-box {
+[data-color="yellow"] {
   background: #fffb89;
   box-shadow: 1px 1px #e7e371;
 }
 
-.yellow-box:hover {
+[data-color="yellow"]:hover {
   border-color: #e7e371;
 }
 
-.limegreen-box {
+[data-color="limegreen"] {
   background: #ddff89;
   box-shadow: 1px 1px #c8ea74;
 }
 
-.limegreen-box:hover {
+[data-color="limegreen"]:hover {
   border-color: #c8ea74;
 }
 
-.green-box {
+[data-color="green"] {
   background: #89ff9a;
   box-shadow: 1px 1px #7df38e;
 }
 
-.green-box:hover {
+[data-color="green"]:hover {
   border-color: #7df38e;
 }
 
-.aqua-box {
+[data-color="aqua"] {
   background: #89ffe8;
   box-shadow: 1px 1px #79efd8;
 }
 
-.aqua-box:hover {
+[data-color="aqua"]:hover {
   border-color: #79efd8;
 }
 
-.blue-box {
+[data-color="blue"] {
   background: #89e2ff;
   box-shadow: 1px 1px #7fd8f5;
 }
 
-.blue-box:hover {
+[data-color="blue"]:hover {
   border-color: #7fd8f5;
 }
 
-.purple-box {
+[data-color="purple"] {
   background: #8997ff;
   box-shadow: 1px 1px #909dff;
 }
 
-.purple-box:hover {
+[data-color="purple"]:hover {
   border-color: #909dff;
 }
 
-.black-box {
-  background: #777;
-  box-shadow: 1px 1px #222;
+[data-color="pink"] {
+  background: #ff89db;
+  box-shadow: 1px 1px #d070b2;
 }
 
-.black-box:hover {
-  background: #fff;
-  border-color: #222;
+[data-color="pink"]:hover {
+  border-color: #d070b2;
 }
 
 

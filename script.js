@@ -141,7 +141,7 @@ function createTodo(color, letter, content = "") {
 
   todoContainer.appendChild(todo);
   container.appendChild(todoContainer);
-  addEventListeners();
+  addTodoEventListeners();
 }
 
 function createNewTodo() {
@@ -211,8 +211,50 @@ function loadTodos() {
   }
 }
 
+function setTodoColor(todo, color) {
+  todo.className = "";
+  todo.classList.add("input", color);
+  todo.id = color;
+}
+
+function setTemporaryTodoColor() {
+  let todo = document.querySelector('.controls').previousElementSibling;
+  let color = this.dataset.color;
+
+  if (!todo.dataset.previousColor) {
+    todo.dataset.previousColor = todo.id
+  }
+
+  setTodoColor(todo, color);
+}
+
+function unsetTemporaryTodoColor() {
+  let todo = document.querySelector('.controls').previousElementSibling;
+
+  if (todo.dataset.previousColor) {
+    let previousColor = todo.dataset.previousColor;
+    delete todo.dataset.previousColor;
+
+    setTodoColor(todo, previousColor);
+  }
+}
+
+function setPermanentTodoColor() {
+  let todo = document.querySelector('.controls').previousElementSibling;
+  let color = this.dataset.color;
+
+  if (todo.dataset.previousColor) {
+    delete todo.dataset.previousColor;
+  }
+
+  setTodoColor(todo, color);
+  saveContent.call(todo);
+
+  hideControls();
+}
+
 let ready;
-let addEventListeners;
+let addTodoEventListeners;
 
 ready = function() {
   container = document.querySelector('#items');
@@ -221,10 +263,16 @@ ready = function() {
 
   document.querySelector('.new-todo').addEventListener("click", createNewTodo);
 
-  addEventListeners();
+  for (var i = 0; i < document.querySelectorAll('.color-box').length; i++) {
+    document.querySelectorAll('.color-box')[i].addEventListener("mouseenter", setTemporaryTodoColor)
+    document.querySelectorAll('.color-box')[i].addEventListener("click", setPermanentTodoColor)
+  }
+  document.querySelector('.color-options').addEventListener("mouseleave", unsetTemporaryTodoColor)
+
+  addTodoEventListeners();
 }
 
-addEventListeners = function() {
+addTodoEventListeners = function() {
   for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
     document.querySelectorAll('.input')[i].addEventListener("input", saveContent);
 
