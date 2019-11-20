@@ -70,6 +70,10 @@ function hideControls() {
   controls.classList.add("hide-controls");
 }
 
+function resetControls() {
+  let controls = document.querySelector('.controls');
+  container.appendChild(controls);
+}
 
 function addContentListener() {
   if (this.querySelector('div')) {
@@ -199,7 +203,7 @@ function createExistingTodos() {
 }
 
 function loadTodos() {
-  if (localStorage.length == 0) {
+  if (localStorage.length == 0 || localStorage.length == 1 && localStorage.getItem("order")) {
     createNewTodo();
     createNewTodo();
     createNewTodo();
@@ -209,6 +213,18 @@ function loadTodos() {
     createExistingTodos();
     saveNewContent();
   }
+}
+
+function removeTodo() {
+  let todo = document.querySelector('.controls').previousElementSibling;
+  name = todo.dataset.name;
+
+  localStorage.removeItem(name);
+
+  resetControls();
+
+  container.removeChild(todoContainer);
+  updateOrder();
 }
 
 function setTodoColor(todo, color) {
@@ -262,12 +278,13 @@ ready = function() {
   loadTodos();
 
   document.querySelector('.new-todo').addEventListener("click", createNewTodo);
+  document.querySelector('.delete-todo').addEventListener("click", removeTodo);
 
   for (var i = 0; i < document.querySelectorAll('.color-box').length; i++) {
-    document.querySelectorAll('.color-box')[i].addEventListener("mouseenter", setTemporaryTodoColor)
-    document.querySelectorAll('.color-box')[i].addEventListener("click", setPermanentTodoColor)
+    document.querySelectorAll('.color-box')[i].addEventListener("mouseenter", setTemporaryTodoColor);
+    document.querySelectorAll('.color-box')[i].addEventListener("click", setPermanentTodoColor);
   }
-  document.querySelector('.color-options').addEventListener("mouseleave", unsetTemporaryTodoColor)
+  document.querySelector('.color-options').addEventListener("mouseleave", unsetTemporaryTodoColor);
 
   addTodoEventListeners();
 }
