@@ -4,12 +4,35 @@ h1 {
   text-align: center;
 }
 
+.new-todo {
+  position: fixed;
+  right: 14px;
+  bottom: 0;
+  cursor: pointer;
+  font-size: 70px;
+  font-weight: 600;
+}
+
+.new-todo:hover {
+  color: #ff6161;
+}
+
+.new-todo::selection {
+  background: transparent;
+}
+
 #items {
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.input-container {
+  position: relative;
 }
 
 .input {
+  position: relative;
   padding: 10px 30px;
   width: auto;  
   font-size: 40px;
@@ -29,8 +52,12 @@ h1 {
   cursor: auto;
 }
 
+.input-container:hover .controls {
+  display: block;
+}
+
 /* red id */
-.inputRed, #red.input.dragging {
+.red, #red.input.dragging {
   background-color: #ff6161;
   outline: 5px solid #ff6161;
   border: 2px solid #ff6161;
@@ -49,7 +76,7 @@ h1 {
 }
 
 /* orange id */
-.inputOrange, #orange.input.dragging {
+.orange, #orange.input.dragging {
   background-color: #ffbe68;
   outline: 5px solid #ffbe68;
   border: 2px solid #ffbe68;  
@@ -68,7 +95,7 @@ h1 {
 }
 
 /* yellow id */
-.inputYellow, #yellow.input.dragging {
+.yellow, #yellow.input.dragging {
   background-color: #fffb89;
   outline: 5px solid #fffb89;
   border: 2px solid #fffb89;  
@@ -87,7 +114,7 @@ h1 {
 }
 
 /* limegreen id */
-.inputLimegreen, #limegreen.input.dragging {
+.limegreen, #limegreen.input.dragging {
   background-color: #ddff89;
   outline: 5px solid #ddff89;
   border: 2px solid #ddff89;
@@ -106,7 +133,7 @@ h1 {
 }
 
 /* green id */
-.inputGreen, #green.input.dragging {
+.green, #green.input.dragging {
   background-color: #89ff9a;
   outline: 5px solid #89ff9a;
   border: 2px solid #89ff9a;
@@ -125,7 +152,7 @@ h1 {
 }
 
 /* aqua id */
-.inputAqua, #aqua.input.dragging {
+.aqua, #aqua.input.dragging {
   background-color: #89ffe8;
   outline: 5px solid #89ffe8;
   border: 2px solid #89ffe8;
@@ -144,7 +171,7 @@ h1 {
 }
 
 /* blue id */
-.inputBlue, #blue.input.dragging {
+.blue, #blue.input.dragging {
   background-color: #89e2ff;
   outline: 5px solid #89e2ff;
   border: 2px solid #89e2ff;
@@ -163,7 +190,7 @@ h1 {
 }
 
 /* purple id */
-.inputPurple, #purple.input.dragging {
+.purple, #purple.input.dragging {
   background-color: #8997ff;
   outline: 5px solid #8997ff;
   border: 2px solid #8997ff;
@@ -181,11 +208,251 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+/* pink id */
+.pink, #pink.input.dragging {
+  background-color: #ff89db;
+  outline: 5px solid #ff89db;
+  border: 2px solid #ff89db;
+  text-shadow: 2px 2px 0px #d070b2;
+}
+
+#pink:hover {
+  background-color: #ff89dbaa;
+  border-color: #ff89db66;
+}
+
+#pink:focus {
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  text-shadow: 0px 0px 0px;
+}
+
 .ghost {
   opacity: 0.4;
   outline-color: #000;
   outline-style: dashed;
   transition: opacity 2s;
+}
+
+.controls {
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 16.5px;
+  width: 53px;
+}
+
+.change-color {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+  border: 3px solid #000000;
+  margin-right: 0px;
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.7;
+}
+
+.change-color .inner {
+  width: 10px;
+  height: 10px;
+  background: #000;
+  margin: 2px auto;
+}
+
+.change-color:hover {
+  border-color: #ffffff;
+  box-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  opacity: 1;
+}
+
+.change-color:hover .inner {
+  background: #ffffff;
+  box-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  outline: 2px solid #000;
+}
+
+.change-color:hover .color-options {
+  display: block;
+}
+
+.color-options {
+  display: none;
+  position: absolute;
+  width: 60px;
+  height: 56px;
+  border: 2px solid #000;
+  background: #fff;
+  text-align: center;
+  top: 19px;
+  left: -24.5px;
+  padding-top: 6px;
+  margin-bottom: -9px;
+  border-radius: 10px;
+}
+
+.triangle {
+  width: 15px;
+  height: 15px;
+  background-color: #ffffff;
+  background: linear-gradient(to bottom right, #ffffff 50%, transparent 50%);
+  position: absolute;
+  right: 22px;
+  top: -10px;
+  transform: rotate(45deg);
+  border: 2px solid #000;
+  border-bottom: 0px;
+  border-right: 0px;
+  z-index: 1;
+}
+
+.color-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #000;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.color-box:hover {
+  background: #000;
+}
+
+[data-color="red"] {
+  background: #ff6161;
+  box-shadow: 1px 1px #ff7070;
+}
+
+[data-color="red"]:hover {
+  border-color: #ff7070;
+}
+
+[data-color="orange"] {
+  background: #ffbe68;
+  box-shadow: 1px 1px #f6b55f;
+}
+
+[data-color="orange"]:hover {
+  border-color: #f6b55f;
+}
+
+[data-color="yellow"] {
+  background: #fffb89;
+  box-shadow: 1px 1px #e7e371;
+}
+
+[data-color="yellow"]:hover {
+  border-color: #e7e371;
+}
+
+[data-color="limegreen"] {
+  background: #ddff89;
+  box-shadow: 1px 1px #c8ea74;
+}
+
+[data-color="limegreen"]:hover {
+  border-color: #c8ea74;
+}
+
+[data-color="green"] {
+  background: #89ff9a;
+  box-shadow: 1px 1px #7df38e;
+}
+
+[data-color="green"]:hover {
+  border-color: #7df38e;
+}
+
+[data-color="aqua"] {
+  background: #89ffe8;
+  box-shadow: 1px 1px #79efd8;
+}
+
+[data-color="aqua"]:hover {
+  border-color: #79efd8;
+}
+
+[data-color="blue"] {
+  background: #89e2ff;
+  box-shadow: 1px 1px #7fd8f5;
+}
+
+[data-color="blue"]:hover {
+  border-color: #7fd8f5;
+}
+
+[data-color="purple"] {
+  background: #8997ff;
+  box-shadow: 1px 1px #909dff;
+}
+
+[data-color="purple"]:hover {
+  border-color: #909dff;
+}
+
+[data-color="pink"] {
+  background: #ff89db;
+  box-shadow: 1px 1px #d070b2;
+}
+
+[data-color="pink"]:hover {
+  border-color: #d070b2;
+}
+
+
+.delete-todo {
+  width: 25px;
+  height: 25px;
+  text-shadow: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  opacity: 0.7;
+}
+
+.delete-todo:hover {
+  color: #ffffff;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  opacity: 1;
+}
+
+.delete-todo div:before {
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  margin-left: -2px;
+}
+
+.delete-todo div:after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  margin-top: -2px;
+}
+
+.delete-todo div:before, .delete-todo div:after {
+  content: "";
+  position: absolute;
+  background-color: #000;
+  transform: rotateZ(45deg);
+}
+
+.delete-todo:hover div:before, .delete-todo:hover div:after {
+  background-color: #fff;
+  box-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+
+.hide-controls {
+  display: none !important;
 }
 
 @media only screen and (max-width: 500px) {
