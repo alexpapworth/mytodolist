@@ -21,6 +21,22 @@ h1 {
   background: transparent;
 }
 
+footer {
+  font-family: "Helvetica neue", Helvetica, "Lucida Grande", sans-serif;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+footer a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #000;
+}
+
+footer a:hover {
+  color: #ff6161;
+}
+
 #items {
   max-width: 800px;
   margin: 0 auto;
