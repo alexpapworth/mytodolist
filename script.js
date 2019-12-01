@@ -179,14 +179,9 @@ function createExistingTodos() {
   let order = JSON.parse(localStorage.getItem("order"));
 
   for (var index = 0; index < order.length; index++) {
-
     let name = order[index];
-
-    if (name != "order") {
-      let storage = JSON.parse(localStorage.getItem(name));
-
-      createTodo(storage.color, name, storage.content);
-    }
+    let storage = JSON.parse(localStorage.getItem(name));
+    createTodo(storage.color, name, storage.content);
   }
 }
 
