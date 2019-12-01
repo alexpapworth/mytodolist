@@ -106,6 +106,23 @@ function saveContent() {
   localStorage.setItem(name, value);
 }
 
+function saveTitle() {
+  let title = this.innerHTML;
+  document.title = title;
+
+  let value = JSON.stringify(title);
+  localStorage.setItem("title", value);
+}
+
+function loadTitle() {
+  let title = JSON.parse(localStorage.getItem("title"));
+
+  if (title != null) {
+    document.querySelector("#title").innerHTML = title;
+    document.title = title;
+  }
+}
+
 function updateOrder() {
   var order = [];
 
@@ -260,7 +277,10 @@ let addTodoEventListeners;
 ready = function() {
   container = document.querySelector('#items');
 
+  loadTitle();
   loadTodos();
+
+  document.querySelector('#title').addEventListener("input", saveTitle);
 
   document.querySelector('.new-todo').addEventListener("click", createNewTodo);
   document.querySelector('.delete-todo').addEventListener("click", removeTodo);

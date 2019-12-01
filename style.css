@@ -1,7 +1,12 @@
-h1 {
+#title {
   font-size: 80px;
   font-family: "Helvetica neue", Helvetica, "Lucida Grande", sans-serif;
   text-align: center;
+  cursor: pointer;
+}
+
+#title:focus {
+  outline: none;
 }
 
 .new-todo {
