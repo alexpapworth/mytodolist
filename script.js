@@ -1,3 +1,5 @@
+"use strict";
+
 var container;
 var dragging;
 var dropping;
@@ -60,7 +62,7 @@ function dragLeaveContent(e) {
 function showControls() {
   let controls = document.querySelector('.controls');
   controls.classList.remove("hide-controls");
-  todoContainer = this.parentElement;
+  let todoContainer = this.parentElement;
 
   todoContainer.appendChild(controls);
 }
@@ -87,7 +89,7 @@ function addContentListener() {
 function saveNewContent() {
   updateOrder();
   for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
-    name = document.querySelectorAll('.input')[i].dataset.name;
+    let name = document.querySelectorAll('.input')[i].dataset.name;
 
     if (localStorage.getItem(name) == null) {
       saveContent.call(document.querySelectorAll('.input')[i]);
@@ -203,7 +205,9 @@ function createExistingTodos() {
 }
 
 function loadTodos() {
-  if (localStorage.length == 0 || localStorage.length == 1 && localStorage.getItem("order")) {
+  if (localStorage.length == 0 ||
+      localStorage.length == 1 && localStorage.getItem("order") ||
+      localStorage.length == 2 && localStorage.getItem("order") && localStorage.getItem("title")) {
     createNewTodo();
     createNewTodo();
     createNewTodo();
@@ -217,13 +221,13 @@ function loadTodos() {
 
 function removeTodo() {
   let todo = document.querySelector('.controls').previousElementSibling;
-  name = todo.dataset.name;
+  let name = todo.dataset.name;
 
   localStorage.removeItem(name);
 
   resetControls();
 
-  container.removeChild(todoContainer);
+  container.removeChild(todo.parentElement);
   updateOrder();
 }
 
