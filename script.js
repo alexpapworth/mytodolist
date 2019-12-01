@@ -106,20 +106,6 @@ function saveContent() {
   localStorage.setItem(name, value);
 }
 
-function loadContent() {
-  for (var index = 0; index < localStorage.length; index++) {
-
-    let name = localStorage.key(index);
-
-    if (name != "order") {
-      if (document.querySelector(`.input[data-name="${name}"]`)) {
-        let value = JSON.parse(localStorage.getItem(name));
-        document.querySelector(`.input[data-name="${name}"]`).innerHTML = value.content;
-      }
-    }
-  }
-}
-
 function updateOrder() {
   var order = [];
 
