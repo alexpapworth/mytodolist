@@ -1,7 +1,12 @@
-h1 {
+#title {
   font-size: 80px;
   font-family: "Helvetica neue", Helvetica, "Lucida Grande", sans-serif;
   text-align: center;
+  cursor: pointer;
+}
+
+#title:focus {
+  outline: none;
 }
 
 .new-todo {
@@ -19,6 +24,22 @@ h1 {
 
 .new-todo::selection {
   background: transparent;
+}
+
+footer {
+  font-family: "Helvetica neue", Helvetica, "Lucida Grande", sans-serif;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+footer a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #000;
+}
+
+footer a:hover {
+  color: #ff6161;
 }
 
 #items {
@@ -75,6 +96,10 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+[data-hover="red"]:hover {
+  color: #ff6161;
+}
+
 /* orange id */
 .orange, #orange.input.dragging {
   background-color: #ffbe68;
@@ -92,6 +117,10 @@ h1 {
   background-color: #ffffff; 
   border: 2px solid #ccc;
   text-shadow: 0px 0px 0px;
+}
+
+[data-hover="orange"]:hover {
+  color: #ffbe68;
 }
 
 /* yellow id */
@@ -113,6 +142,10 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+[data-hover="yellow"]:hover {
+  color: #fffb89;
+}
+
 /* limegreen id */
 .limegreen, #limegreen.input.dragging {
   background-color: #ddff89;
@@ -130,6 +163,10 @@ h1 {
   background-color: #ffffff; 
   border: 2px solid #ccc;
   text-shadow: 0px 0px 0px;
+}
+
+[data-hover="limegreen"]:hover {
+  color: #ddff89;
 }
 
 /* green id */
@@ -151,6 +188,10 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+[data-hover="green"]:hover {
+  color: #89ff9a;
+}
+
 /* aqua id */
 .aqua, #aqua.input.dragging {
   background-color: #89ffe8;
@@ -168,6 +209,10 @@ h1 {
   background-color: #ffffff; 
   border: 2px solid #ccc;
   text-shadow: 0px 0px 0px;
+}
+
+[data-hover="aqua"]:hover {
+  color: #89ffe8;
 }
 
 /* blue id */
@@ -189,6 +234,10 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+[data-hover="blue"]:hover {
+  color: #89e2ff;
+}
+
 /* purple id */
 .purple, #purple.input.dragging {
   background-color: #8997ff;
@@ -208,6 +257,10 @@ h1 {
   text-shadow: 0px 0px 0px;
 }
 
+[data-hover="purple"]:hover {
+  color: #8997ff;
+}
+
 /* pink id */
 .pink, #pink.input.dragging {
   background-color: #ff89db;
@@ -225,6 +278,10 @@ h1 {
   background-color: #ffffff;
   border: 2px solid #ccc;
   text-shadow: 0px 0px 0px;
+}
+
+[data-hover="pink"]:hover {
+  color: #ff89db;
 }
 
 .ghost {

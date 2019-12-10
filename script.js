@@ -1,3 +1,5 @@
+"use strict";
+
 var container;
 var dragging;
 var dropping;
@@ -60,7 +62,7 @@ function dragLeaveContent(e) {
 function showControls() {
   let controls = document.querySelector('.controls');
   controls.classList.remove("hide-controls");
-  todoContainer = this.parentElement;
+  let todoContainer = this.parentElement;
 
   todoContainer.appendChild(controls);
 }
@@ -87,7 +89,7 @@ function addContentListener() {
 function saveNewContent() {
   updateOrder();
   for (var i = 0; i < document.querySelectorAll('.input').length; i++) {
-    name = document.querySelectorAll('.input')[i].dataset.name;
+    let name = document.querySelectorAll('.input')[i].dataset.name;
 
     if (localStorage.getItem(name) == null) {
       saveContent.call(document.querySelectorAll('.input')[i]);
@@ -104,17 +106,20 @@ function saveContent() {
   localStorage.setItem(name, value);
 }
 
-function loadContent() {
-  for (var index = 0; index < localStorage.length; index++) {
+function saveTitle() {
+  let title = this.innerHTML;
+  document.title = title;
 
-    let name = localStorage.key(index);
+  let value = JSON.stringify(title);
+  localStorage.setItem("title", value);
+}
 
-    if (name != "order") {
-      if (document.querySelector(`.input[data-name="${name}"]`)) {
-        let value = JSON.parse(localStorage.getItem(name));
-        document.querySelector(`.input[data-name="${name}"]`).innerHTML = value.content;
-      }
-    }
+function loadTitle() {
+  let title = JSON.parse(localStorage.getItem("title"));
+
+  if (title != null) {
+    document.querySelector("#title").innerHTML = title;
+    document.title = title;
   }
 }
 
@@ -128,6 +133,20 @@ function updateOrder() {
 
   let value = JSON.stringify(order);
   localStorage.setItem("order", value);
+}
+
+function decideNextTodoColor() {
+  let countOfTodos = document.querySelectorAll('.input').length;
+  var colorIndex = countOfTodos%7;
+
+  if (colorIndex > 7) {
+    colorIndex = 0;
+  }
+
+  let nextColor = colors[colorIndex];
+
+  document.querySelector('.new-todo').dataset.hover = nextColor;
+  document.querySelector('.github').dataset.hover = nextColor;
 }
 
 function createTodo(color, letter, content = "") {
@@ -146,11 +165,12 @@ function createTodo(color, letter, content = "") {
   todoContainer.appendChild(todo);
   container.appendChild(todoContainer);
   addTodoEventListeners();
+
+  decideNextTodoColor();
 }
 
 function createNewTodo() {
   if (document.querySelectorAll('.input').length == 0) {
-    var colorIndex = 0;
     var chosenLetter = "a";
   }
   else {
@@ -173,15 +193,11 @@ function createNewTodo() {
         i = countOfTodos;
       }
     }
-
-    var colorIndex = countOfTodos%7
-
-    if (colorIndex > 7) {
-      colorIndex = 0;
-    }
   }
 
-  createTodo(colors[colorIndex], chosenLetter);
+  let nextColor = document.querySelector('.new-todo').dataset.hover;
+
+  createTodo(nextColor, chosenLetter);
   saveNewContent();
 
   window.scrollTo(0,document.body.scrollHeight);
@@ -191,19 +207,16 @@ function createExistingTodos() {
   let order = JSON.parse(localStorage.getItem("order"));
 
   for (var index = 0; index < order.length; index++) {
-
     let name = order[index];
-
-    if (name != "order") {
-      let storage = JSON.parse(localStorage.getItem(name));
-
-      createTodo(storage.color, name, storage.content);
-    }
+    let storage = JSON.parse(localStorage.getItem(name));
+    createTodo(storage.color, name, storage.content);
   }
 }
 
 function loadTodos() {
-  if (localStorage.length == 0 || localStorage.length == 1 && localStorage.getItem("order")) {
+  if (localStorage.length == 0 ||
+      localStorage.length == 1 && localStorage.getItem("order") ||
+      localStorage.length == 2 && localStorage.getItem("order") && localStorage.getItem("title")) {
     createNewTodo();
     createNewTodo();
     createNewTodo();
@@ -217,13 +230,13 @@ function loadTodos() {
 
 function removeTodo() {
   let todo = document.querySelector('.controls').previousElementSibling;
-  name = todo.dataset.name;
+  let name = todo.dataset.name;
 
   localStorage.removeItem(name);
 
   resetControls();
 
-  container.removeChild(todoContainer);
+  container.removeChild(todo.parentElement);
   updateOrder();
 }
 
@@ -275,7 +288,10 @@ let addTodoEventListeners;
 ready = function() {
   container = document.querySelector('#items');
 
+  loadTitle();
   loadTodos();
+
+  document.querySelector('#title').addEventListener("input", saveTitle);
 
   document.querySelector('.new-todo').addEventListener("click", createNewTodo);
   document.querySelector('.delete-todo').addEventListener("click", removeTodo);
