@@ -135,6 +135,20 @@ function updateOrder() {
   localStorage.setItem("order", value);
 }
 
+function decideNextTodoColor() {
+  let countOfTodos = document.querySelectorAll('.input').length;
+  var colorIndex = countOfTodos%7;
+
+  if (colorIndex > 7) {
+    colorIndex = 0;
+  }
+
+  let nextColor = colors[colorIndex];
+
+  document.querySelector('.new-todo').dataset.hover = nextColor;
+  document.querySelector('.github').dataset.hover = nextColor;
+}
+
 function createTodo(color, letter, content = "") {
   let todoContainer = document.createElement('div');
   todoContainer.classList.add('input-container');
@@ -151,11 +165,12 @@ function createTodo(color, letter, content = "") {
   todoContainer.appendChild(todo);
   container.appendChild(todoContainer);
   addTodoEventListeners();
+
+  decideNextTodoColor();
 }
 
 function createNewTodo() {
   if (document.querySelectorAll('.input').length == 0) {
-    var colorIndex = 0;
     var chosenLetter = "a";
   }
   else {
@@ -178,15 +193,11 @@ function createNewTodo() {
         i = countOfTodos;
       }
     }
-
-    var colorIndex = countOfTodos%7
-
-    if (colorIndex > 7) {
-      colorIndex = 0;
-    }
   }
 
-  createTodo(colors[colorIndex], chosenLetter);
+  let nextColor = document.querySelector('.new-todo').dataset.hover;
+
+  createTodo(nextColor, chosenLetter);
   saveNewContent();
 
   window.scrollTo(0,document.body.scrollHeight);
