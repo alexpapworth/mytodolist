@@ -33,8 +33,8 @@ function dragend() {
   dragging.classList.remove('dragging');
   dropping = document.querySelector('.ghost');
   
-  dragIndex = Array.from(document.querySelectorAll('.input')).indexOf(dragging);
-  dropIndex = Array.from(document.querySelectorAll('.input')).indexOf(dropping);
+  let dragIndex = Array.from(document.querySelectorAll('.input')).indexOf(dragging);
+  let dropIndex = Array.from(document.querySelectorAll('.input')).indexOf(dropping);
 
   while (document.querySelector('.ghost')) {
     document.querySelector('.ghost').classList.remove('ghost');
@@ -217,6 +217,7 @@ function loadTodos() {
   if (localStorage.length == 0 ||
       localStorage.length == 1 && localStorage.getItem("order") ||
       localStorage.length == 2 && localStorage.getItem("order") && localStorage.getItem("title")) {
+    decideNextTodoColor();
     createNewTodo();
     createNewTodo();
     createNewTodo();
