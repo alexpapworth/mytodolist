@@ -30,6 +30,28 @@ But if you clear your browser cache, then you'll lose the todos. 🤷‍♂️
 
 Test it out here. https://alexpapworth.github.io/mytodolist/
 
+# Run the specs
+
+1. Install yarn (or npm)
+
+`brew install yarn`
+
+2. Make sure you're in the right directory
+
+`cd ~/git/mytodolist`
+
+3. Install jest and puppeteer
+
+`yarn install`
+
+4. Run the test suite
+
+`yarn jest test`
+
+5. Or run an individual describe block
+
+`yarn jest test -t "when clicking new todo button"`
+
 ## License
 
 This project is licensed under the MIT License - Feel free to do what you want with it!
