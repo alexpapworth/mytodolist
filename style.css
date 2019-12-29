@@ -514,7 +514,7 @@ footer a:hover {
 
 @media only screen and (max-width: 500px) {
 
-  h1 {
+  #title {
     font-size: 40px;
   }
 
